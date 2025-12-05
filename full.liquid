@@ -1,0 +1,23 @@
+<div class="layout">
+  <div class="flex flex--row flex--center-x flex--center-y h-full w-full" id="{{ ec_id }}"></div>
+</div>
+
+<script>
+  new window.TRMNLCountdown(
+    '{{ ec_id }}',
+    {
+      date: "{{ trmnl.plugin_settings.custom_fields_values.target_date | default: '2025-12-25' }}",
+      theme: "{{ trmnl.plugin_settings.custom_fields_values.theme | default: 'christmas' }}",
+      topText: "{{ trmnl.plugin_settings.custom_fields_values.top_text | default: "IT'S CHRISTMAS IN" }}",
+      bottomText: "{{ trmnl.plugin_settings.custom_fields_values.bottom_text | default: 'DAYS!' }}",
+      eventText: "{{ trmnl.plugin_settings.custom_fields_values.event_text | default: 'HAPPY HOLIDAYS!' }}"
+    },
+    {
+      dimensions: { width: 800, height: 480 },
+      safeZone: { top: 100, left: 20, width: 60, height: 40 },
+      emojiCount: 30,
+      strokeSize: 'xlarge',
+      numberSize: 'xxlarge'
+    }
+  );
+</script>

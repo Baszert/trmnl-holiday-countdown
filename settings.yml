@@ -1,0 +1,63 @@
+---
+strategy: static
+no_screen_padding: 'yes'
+dark_mode: 'no'
+static_data: ''
+polling_verb: get
+polling_url: ''
+polling_headers: ''
+polling_body: ''
+id: 188160
+custom_fields:
+- name: About this plugin
+  keyname: author_bio
+  field_type: author_bio
+  description: Setup a date, choose a theme, enter a top and a bottom text and enter text that is shown on the date you countdown to!<br/><br/> Update Dec 01, 2025 - There was a bug that prevented to have 2 or more countdowns in a mashup, this has been resolved! <br/><br/>Questions or have some great idea to add? Send me an e-mail or hit me up at Discord at @Bastronautica!
+  category: calendar
+  email_address: trmnl@achtnegen.nl
+- name: Date
+  description: Enter the date that you want to countdown to
+  keyname: target_date
+  field_type: date
+  required: true
+  default: '2025-12-25'
+- name: Theme
+  description: Which emoji set needs to be used
+  keyname: theme
+  field_type: select
+  options:
+  - Christmas: christmas
+  - Valentine: valentine
+  - Easter: easter
+  - Summer: summer
+  - Autumn: autumn
+  - Birthday: birthday
+  - Sale: sale
+  - Halloween: halloween
+  - New Year: newyear
+  - Wedding: wedding
+  - Baby: baby
+  - Travel: travel
+  - Random Mix: random
+  - St. Patrick's: stpatricks
+  - Kingsday: kingsday
+  - Formula 1: formula1
+  - Biking: biking
+  default: christmas
+- name: Top Text
+  description: Shows above the number of days
+  keyname: top_text
+  field_type: string
+  default: IT'S CHRISTMAS IN
+- name: Bottom Text
+  description: Shows under the number of days
+  keyname: bottom_text
+  field_type: string
+  default: DAYS!
+- name: On the date
+  description: The text that is shown when the countdown date is reached
+  keyname: event_text
+  field_type: string
+  default: HAPPY HOLIDAYS!
+name: Holiday countdown - With Emoji
+refresh_interval: 1440

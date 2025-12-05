@@ -1,0 +1,132 @@
+{% assign ec_id = "ec-" | append_random %}
+
+<!-- Noto Emoji Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&display=swap" rel="stylesheet">
+
+<style>
+  #{{ ec_id }} { font-family: 'Host Grotesk', sans-serif; }
+  .flex { position: relative; overflow: hidden; }
+  .content { z-index: 10; }
+  .bold { font-weight: 600; }
+  .emoji { position: absolute; z-index: 1; font-family: "Noto Emoji", sans-serif; font-weight: 400; }
+</style>
+
+<script>
+if (!window.TRMNLCountdown) {
+  window.TRMNLCountdown = class TRMNLCountdown {
+    constructor(elementId, config, layout) {
+      this.elementId = elementId;
+      this.config = config;
+      this.layout = layout;
+      this.themes = {
+        christmas: ['🎄', '🎅', '🎁', '❄', '⛄', '🦌', '🔔', '🕯'],
+        valentine: ['💖', '💘', '💌', '🌹', '🍫', '🧸', '💏', '🥰'],
+        easter: ['🐰', '🥚', '🐣', '🌷', '🍫', '🐇', '🌸', '🧺'],
+        summer: ['☀️', '🏖', '🍦', '🕶', '🌴', '🍉', '🏊', '🍹'],
+        autumn: ['🍂', '🍁', '🍄', '🎃', '🐿', '🧣', '🌧', '🥧'],
+        birthday: ['🎂', '🎈', '🎁', '🎉', '🕯', '🍰', '🥳', '👑'],
+        sale: ['💸', '🏷', '🛍', '💯', '🤑', '💳', '🛒', '💰'],
+        halloween: ['🎃', '👻', '🕸', '🕷', '🦇', '💀', '🍬', '🧛'],
+        newyear: ['🎆', '🎇', '🥂', '🍾', '🎉', '🕛', '🎊', '🌟'],
+        wedding: ['💍', '👰', '🤵', '💒', '💐', '🥂', '🔔', '💌'],
+        baby: ['👶', '🍼', '🧸', '👣', '🤱', '🎈', '🐣', '🧷'],
+        stpatricks: ['🍀', '🌈', '🎩', '🍺', '☘️', '🇮🇪', '🥔', '💰'],
+        kingsday: ['🧡', '👑', '🇳🇱', '🎉', '🎊', '🥳', '🎈', '🍊'],
+        formula1: ['🏎️', '🏁', '🏆', '⛽', '🔧', '⚙️', '⚡', '🔥'],
+        biking: ['🚴', '🚵', '🚲', '🚧', '💨', '🌲'],
+        travel: ['🌞', '✈️', '🧳', '🌴', '🏖️', '🌆', '🚂', '🌻'],
+        random: []
+      };
+      
+      this.init();
+    }
+
+    init() {
+      const daysLeft = this.getDaysUntil(this.config.date);
+      const emojis = this.generateEmojis(this.config.theme, this.layout.emojiCount, this.layout.safeZone, this.layout.dimensions);
+      this.render(daysLeft, emojis);
+    }
+
+    getDaysUntil(targetDateStr) {
+      const now = new Date();
+      now.setHours(0, 0, 0, 0);
+      let targetDate = new Date(targetDateStr);
+      if (isNaN(targetDate.getTime())) return 0;
+      targetDate.setHours(0, 0, 0, 0);
+      const diffTime = targetDate - now;
+      return Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+    }
+
+    generateEmojis(themeKey, count, safeZone, dimensions) {
+      let themeEmojis = this.themes[themeKey] || this.themes['christmas'];
+      if (themeKey === 'random') themeEmojis = Object.values(this.themes).flat();
+      const emojis = themeEmojis.map(e => e + '\uFE0E');
+      const generated = [];
+      const existingBoxes = [safeZone];
+
+      for (let i = 0; i < count; i++) {
+        let top, left, size, rotation;
+        let attempts = 0;
+        let valid = false;
+        while (!valid && attempts < 50) {
+          top = Math.floor(Math.random() * 90);
+          left = Math.floor(Math.random() * 90);
+          size = Math.floor(Math.random() * 40) + 30;
+          rotation = Math.floor(Math.random() * 90) - 45;
+          
+          const heightPct = (size / dimensions.height) * 100;
+          const widthPct = (size / dimensions.width) * 100;
+          const newBox = { top, left, width: widthPct + 5, height: heightPct + 5 };
+          
+          let collision = false;
+          for (const box of existingBoxes) {
+            if (newBox.left < box.left + box.width &&
+                newBox.left + newBox.width > box.left &&
+                newBox.top < box.top + box.height &&
+                newBox.top + newBox.height > box.top) {
+              collision = true;
+              break;
+            }
+          }
+          
+          if (!collision) {
+            valid = true;
+            existingBoxes.push(newBox);
+            generated.push({ 
+              char: emojis[Math.floor(Math.random() * emojis.length)], 
+              top, left, size, rotation 
+            });
+          }
+          attempts++;
+        }
+      }
+      return generated;
+    }
+
+    render(daysLeft, emojis) {
+      const container = document.getElementById(this.elementId);
+      if (!container) return;
+
+      let contentHtml = '';
+      if (daysLeft === 0) {
+        contentHtml = `<span class="value bold text--center" data-pixel-perfect="true">${this.config.eventText}</span>`;
+      } else {
+        const strokeSize = this.layout.strokeSize || 'xlarge';
+        contentHtml = `
+            <span class="value--xsmall bold text--center text-stroke text-stroke--${strokeSize}" data-pixel-perfect="true">${this.config.topText}</span>
+            <span class="value--${this.layout.numberSize || 'xxlarge'} bold block text--center text-stroke text-stroke--${strokeSize}" data-pixel-perfect="true">${daysLeft}</span>
+            <span class="value--xsmall bold text--center text-stroke text-stroke--${strokeSize}" data-pixel-perfect="true">${this.config.bottomText}</span>
+        `;
+      }
+
+      let html = `<div class="content text--black rounded--small text--center">${contentHtml}</div>`;
+      emojis.forEach(emoji => {
+        html += `<div class="emoji text--gray-30 image-dither" style="top: ${emoji.top}%; left: ${emoji.left}%; font-size: ${emoji.size}px; transform: rotate(${emoji.rotation}deg);">${emoji.char}</div>`;
+      });
+      container.innerHTML = html;
+    }
+  };
+}
+</script>
