@@ -2,6 +2,10 @@
 
 A festive countdown plugin for TRMNL that displays the number of days until your special event with themed emoji decorations.
 
+<a href="https://usetrmnl.com/recipes/188160">
+  <img src="https://usetrmnl.com/images/brand/badges/dark/show-it-on-trmnl/trmnl-badge-show-it-on-dark.svg" alt="TRMNL Badge" width="120">
+</a>
+
 ## Overview
 
 This plugin creates a visually engaging countdown to any date you choose. Perfect for holidays, birthdays, vacations, weddings, or any special event you're looking forward to. The display features themed emojis that match your occasion and shows a custom message when the big day arrives.
