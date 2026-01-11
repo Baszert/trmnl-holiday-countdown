@@ -4,9 +4,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
 
 <style>
-  #{{ ec_id }} { font-family: 'Host Grotesk', sans-serif; }
+  #{{ ec_id }} { font-family: "Google Sans Flex", sans-serif; }
   .flex { position: relative; overflow: hidden; }
   .content { z-index: 10; }
   .bold { font-weight: 600; }
@@ -111,7 +112,7 @@ if (!window.TRMNLCountdown) {
 
       let contentHtml = '';
       if (daysLeft === 0) {
-        contentHtml = `<span class="value bold text--center" data-pixel-perfect="true">${this.config.eventText}</span>`;
+        contentHtml = `<span class="value--large bold text--center text-stroke" data-pixel-perfect="true">${this.config.eventText}</span>`;
       } else {
         const strokeSize = this.layout.strokeSize || 'xlarge';
         contentHtml = `
@@ -121,7 +122,7 @@ if (!window.TRMNLCountdown) {
         `;
       }
 
-      let html = `<div class="content text--black rounded--small text--center">${contentHtml}</div>`;
+      let html = `<div class="content text--black rounded--small  text--center">${contentHtml}</div>`;
       emojis.forEach(emoji => {
         html += `<div class="emoji text--gray-30 image-dither" style="top: ${emoji.top}%; left: ${emoji.left}%; font-size: ${emoji.size}px; transform: rotate(${emoji.rotation}deg);">${emoji.char}</div>`;
       });
