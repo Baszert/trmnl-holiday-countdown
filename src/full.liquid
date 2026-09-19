@@ -1,5 +1,5 @@
-<div class="layout">
-  <div class="flex flex--row flex--center-x flex--center-y h-full w-full" id="{{ ec_id }}"></div>
+<div class="layout w--full h--full">
+  <div class="flex flex--row flex--center-x flex--center-y h--full w--full" id="{{ ec_id }}"></div>
 </div>
 
 <script>
@@ -13,11 +13,11 @@
       eventText: "{{ trmnl.plugin_settings.custom_fields_values.event_text | default: 'HAPPY HOLIDAYS!' }}"
     },
     {
-      dimensions: { width: 400, height: 400 },
-      safeZone: { top: 20, left: 30, width: 40, height: 60 },
-      emojiCount: 15,
-      strokeSize: 'large',
-      numberSize: 'xlarge'
+      dimensions: { width: 800, height: 480 },
+      safeZone: { top: 100, left: 20, width: 60, height: 40 },
+      emojiCount: 30,
+      strokeSize: 'xlarge',
+      numberSize: 'text text--peta'
     }
   );
 </script>

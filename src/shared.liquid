@@ -1,13 +1,9 @@
 {% assign ec_id = "ec-" | append_random %}
 
 <!-- Noto Emoji Font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap" rel="stylesheet">
 
 <style>
-  #{{ ec_id }} { font-family: "Google Sans Flex", sans-serif; }
   .flex { position: relative; overflow: hidden; }
   .content { z-index: 10; }
   .bold { font-weight: 600; }
@@ -116,9 +112,9 @@ if (!window.TRMNLCountdown) {
       } else {
         const strokeSize = this.layout.strokeSize || 'xlarge';
         contentHtml = `
-            <span class="value--xsmall bold text--center text-stroke text-stroke--${strokeSize}" data-pixel-perfect="true">${this.config.topText}</span>
-            <span class="value--${this.layout.numberSize || 'xxlarge'} bold block text--center text-stroke text-stroke--${strokeSize}" data-pixel-perfect="true">${daysLeft}</span>
-            <span class="value--xsmall bold text--center text-stroke text-stroke--${strokeSize}" data-pixel-perfect="true">${this.config.bottomText}</span>
+            <span class="value--xsmall lg:value--small bold text--center text-stroke text-stroke--${strokeSize}" data-pixel-perfect="true">${this.config.topText}</span>
+            <span class="${this.layout.numberSize || 'value--xxlarge'} bold block text--center text-stroke text-stroke--${strokeSize}" data-pixel-perfect="true">${daysLeft}</span>
+            <span class="value--xsmall lg:value--small bold text--center text-stroke text-stroke--${strokeSize}" data-pixel-perfect="true">${this.config.bottomText}</span>
         `;
       }
 
