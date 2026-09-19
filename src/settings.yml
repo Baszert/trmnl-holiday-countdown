@@ -43,7 +43,7 @@ custom_fields:
   keyname: target_date
   field_type: date
   required: true
-  default: '2025-12-25'
+  default: '2026-12-25'
 - name: Theme
   description: Which emoji set needs to be used
   keyname: theme
