@@ -4,10 +4,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji:wght@300..700&display=swap" rel="stylesheet">
 
 <style>
-  .flex { position: relative; overflow: hidden; }
-  .content { z-index: 10; }
-  .bold { font-weight: 600; }
-  .emoji { position: absolute; z-index: 1; font-family: "Noto Emoji", sans-serif; font-weight: 400; }
+  /* Scoped to .countdown-plugin so these don't leak into other plugins in a mashup */
+  .countdown-plugin .flex { position: relative; overflow: hidden; }
+  .countdown-plugin .content { z-index: 10; }
+  .countdown-plugin .bold { font-weight: 600; }
+  .countdown-plugin .emoji { position: absolute; z-index: 1; font-family: "Noto Emoji", sans-serif; font-weight: 400; }
 </style>
 
 <script>
