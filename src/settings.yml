@@ -37,7 +37,7 @@ custom_fields:
   description: Setup a date, choose a theme, enter a top and a bottom text and enter text that is shown on the date you countdown to!<br/><br/>Questions or have some great idea to add? Send me an e-mail or hit me up at Discord at @Bastronautica!
   category: calendar
   email_address: trmnl@achtnegen.nl
-  github_url: https://github.com/Bastronautik/trmnl-holiday-countdown
+  github_url: https://github.com/Baszert/trmnl-holiday-countdown
 - name: Date
   description: Enter the date that you want to countdown to
   keyname: target_date
